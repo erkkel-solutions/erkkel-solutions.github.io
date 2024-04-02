@@ -3,9 +3,43 @@ import Layout from '../layouts/Layout.astro';
 ---
 
 <Layout title="Welcome to Astro.">
-  <main class="border-l border-r border-b border-gray-500 p-2">
-    <div class="h-screen">
-      <span class="text-white">hello</span>
+  <main class="mt-8">
+    <div class="cross-container border border-gray-500 h-32">
+      <div class="cross cross-tl">+</div>
+      <div class="cross cross-tr">+</div>
+      <div class="cross cross-bl">+</div>
+      <div class="cross cross-br">+</div>
     </div>
   </main>
 </Layout>
+
+<style>
+  .cross-container {
+    position: relative;
+  }
+  .cross {
+    user-select: none;
+    position: absolute;
+    color: white;
+  }
+
+  .cross-tl {
+    top: -14px;
+    left: -5px;
+  }
+
+  .cross-tr {
+    top: -14px;
+    right: -5px;
+  }
+
+  .cross-bl {
+    bottom: -11px;
+    left: -5px;
+  }
+
+  .cross-br {
+    bottom: -11px;
+    right: -5px;
+  }
+</style>
