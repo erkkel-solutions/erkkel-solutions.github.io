@@ -15,7 +15,7 @@ const size = 1;
 const pos = `-${size / 2 + 0.03}em`; // needed some additional fine-tuning
 ---
 
-<div class:list={['cross-container border border-gray-500 h-32 p-4', className]} {...rest}>
+<div class:list={['cross-container border border-gray-600 p-4', className]} {...rest}>
   {showTopLeft ? <Cross class="cross-top-left" size={`${size}em`} /> : ''}
   {showTopRight ? <Cross class="cross-top-right" size={`${size}em`} /> : ''}
   {showBottomLeft ? <Cross class="cross-bottom-left" size={`${size}em`} /> : ''}
@@ -26,11 +26,6 @@ const pos = `-${size / 2 + 0.03}em`; // needed some additional fine-tuning
 <style define:vars={{ pos }}>
   .cross-container {
     position: relative;
-  }
-  .cross {
-    user-select: none;
-    position: absolute;
-    color: white;
   }
 
   .cross-top-left {
