@@ -1,0 +1,55 @@
+---
+interface Props {
+  class?: string;
+  showTopLeft?: boolean;
+  showTopRight?: boolean;
+  showBottomLeft?: boolean;
+  showBottomRight?: boolean;
+}
+
+import Cross from './BlockCross.astro';
+
+const { showTopLeft = true, showTopRight = true, showBottomLeft = true, showBottomRight = true, class: className, ...rest } = Astro.props;
+
+const size = 24;
+const pos = `-${size / 3}px`;
+---
+
+<div class:list={['cross-container border border-gray-500 h-32 p-4', className]} {...rest}>
+  {showTopLeft ? <Cross class="cross-top-left" /> : ''}
+  {showTopRight ? <Cross class="cross-top-right" /> : ''}
+  {showBottomLeft ? <Cross class="cross-bottom-left" /> : ''}
+  {showBottomRight ? <Cross class="cross-bottom-right" /> : ''}
+  <slot />
+</div>
+
+<style define:vars={{ pos }}>
+  .cross-container {
+    position: relative;
+  }
+  .cross {
+    user-select: none;
+    position: absolute;
+    color: white;
+  }
+
+  .cross-top-left {
+    top: var(--pos);
+    left: var(--pos);
+  }
+
+  .cross-top-right {
+    top: var(--pos);
+    right: var(--pos);
+  }
+
+  .cross-bottom-left {
+    bottom: var(--pos);
+    left: var(--pos);
+  }
+
+  .cross-bottom-right {
+    bottom: var(--pos);
+    right: var(--pos);
+  }
+</style>

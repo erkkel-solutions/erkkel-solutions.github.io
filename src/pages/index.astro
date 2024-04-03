@@ -1,45 +1,10 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import Block from '../components/Block.astro';
 ---
 
 <Layout title="Welcome to Astro.">
   <main class="mt-8">
-    <div class="cross-container border border-gray-500 h-32">
-      <div class="cross cross-tl">+</div>
-      <div class="cross cross-tr">+</div>
-      <div class="cross cross-bl">+</div>
-      <div class="cross cross-br">+</div>
-    </div>
+    <Block> <span class="text-white">Hello</span></Block>
   </main>
 </Layout>
-
-<style>
-  .cross-container {
-    position: relative;
-  }
-  .cross {
-    user-select: none;
-    position: absolute;
-    color: white;
-  }
-
-  .cross-tl {
-    top: -14px;
-    left: -5px;
-  }
-
-  .cross-tr {
-    top: -14px;
-    right: -5px;
-  }
-
-  .cross-bl {
-    bottom: -11px;
-    left: -5px;
-  }
-
-  .cross-br {
-    bottom: -11px;
-    right: -5px;
-  }
-</style>

@@ -1,29 +1,20 @@
 ---
-
+import Block from './Block.astro';
 ---
 
 <nav>
   <div class="mx-auto">
-    <div class="border border-gray-500 text-gray-300">
-      <div class="flex space-x-8">
-        <div class="flex flex-1 items-center justify-center border-r border-gray-500">
-          <span class="text-gray-300 text-xl">ERKKEL</span>
-          <!-- TODO GPE: image -->
-        </div>
-        <div class="flex flex-auto h-24 items-center justify-evenly">
-          <a href="2" class="text-gray-300 px-3 py-2 text-xl font-medium">About us</a>
-          <a href="2" class="text-gray-300 px-3 py-2 text-xl font-medium">Services</a>
-          <a href="2" class="text-gray-300 px-3 py-2 text-xl font-medium">Clients</a>
-          <a href="2" class="text-gray-300 px-3 py-2 text-xl font-medium">Open positions</a>
-          <a href="2" class="text-gray-300 px-3 py-2 text-xl font-medium">Contact</a>
-        </div>
-      </div>
-      <!-- <div class="flex flex-1">
-        <div class="flex flex-1 items-center border-r border-gray-500">
-    <div class="flex flex-1 justify-evenly">
-   
-    </div>
-  </div> -->
+    <div class="flex">
+      <Block class="flex flex-1 items-center justify-center">
+        <span class="text-gray-300 text-xl">ERKKEL</span>
+      </Block>
+      <Block class="flex flex-auto h-24 items-center justify-evenly border-l-0" showTopLeft={false} showBottomLeft={false}>
+        <a href="2" class="text-gray-300 px-3 py-2 text-xl font-medium">About us</a>
+        <a href="2" class="text-gray-300 px-3 py-2 text-xl font-medium">Services</a>
+        <a href="2" class="text-gray-300 px-3 py-2 text-xl font-medium">Clients</a>
+        <a href="2" class="text-gray-300 px-3 py-2 text-xl font-medium">Open positions</a>
+        <a href="2" class="text-gray-300 px-3 py-2 text-xl font-medium">Contact</a>
+      </Block>
     </div>
   </div>
 </nav>
