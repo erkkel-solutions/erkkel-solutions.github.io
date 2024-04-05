@@ -1,0 +1,5 @@
+<svg width="190" height="234" viewBox="0 0 190 234" fill="none" xmlns="http://www.w3.org/2000/svg">
+	<circle cx="95" cy="115" r="94.5" stroke="currentColor"/>
+	<path d="M161.5 0.953125L152.091 150.251L111.593 87.3944L36.9092 83.7505L161.5 0.953125Z" fill="var(--color-primary)"/>
+	<path d="M27.4999 233.047L152.091 150.249L77.4068 146.606L36.9092 83.7495L27.4999 233.047Z" fill="var(--color-secondary)"/>
+</svg>
