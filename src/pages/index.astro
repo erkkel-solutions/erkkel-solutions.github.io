@@ -1,9 +1,9 @@
 ---
 import { Image } from 'astro:assets';
-import { Icon } from 'astro-icon/components';
 import Layout from '@layouts/layout.astro';
 import Block from '@components/block.astro';
 import mountainImage from '@assets/images/mountain.png';
+import Compass from '@components/compass.astro';
 ---
 
 <Layout title="Welcome to Astro.">
@@ -18,7 +18,7 @@ import mountainImage from '@assets/images/mountain.png';
           </p>
           <button class="bg-orange-600 hover:bg-orange-800 text-gray-950 uppercase font-mono font-bold px-6 py-2.5">Get to know us</button>
         </div>
-        <Icon name="compass" width={190} height={234} />
+        <Compass />
       </div>
       <div class="flex justify-center">
         <Image src={mountainImage} alt="mountain" />

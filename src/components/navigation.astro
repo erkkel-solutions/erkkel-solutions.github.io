@@ -1,15 +1,13 @@
 ---
 import Block from './block.astro';
-import { Icon } from 'astro-icon/components';
+import Logo from './logo.astro';
 ---
 
 <nav>
   <div class="mx-auto">
     <div class="flex">
       <Block class="flex px-24 py-8 items-center justify-center">
-        <a href="/">
-          <Icon name="logo" width={165} height={30} />
-        </a>
+        <Logo />
       </Block>
       <Block class="flex flex-auto items-center justify-evenly border-l-0" showTopLeft={false} showBottomLeft={false}>
         <a href="#" class="font-mono hover:text-orange-500">About us</a>
