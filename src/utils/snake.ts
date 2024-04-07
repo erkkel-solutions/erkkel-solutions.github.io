@@ -1,72 +1,89 @@
-import _ from 'lodash';
 import Graph from 'graphology';
-import { bidirectional } from 'graphology-shortest-path/unweighted';
+import { bidirectional, type ShortestPath } from 'graphology-shortest-path/unweighted';
+import anime from 'animejs/lib/anime.es.js';
+import { sampleSize } from 'lodash';
 
-const snake = document.getElementById('snake')!;
+function getElement(graph: Graph, index: string) {
+  return graph.getNodeAttribute(index, 'element') as HTMLElement;
+}
 
-function buildGraph(nodes: HTMLElement[]): Graph {
-  const graph = new Graph({ multi: true });
-  nodes.forEach((node, index) => {
-    graph.addNode(index.toString(), { element: node });
-  });
+const ground = document.getElementById('snake-ground');
 
-  nodes.forEach((nodeA, indexA) => {
-    nodes.forEach((nodeB, indexB) => {
-      if (indexA !== indexB) {
-        const rectA = nodeA.getBoundingClientRect();
-        const rectB = nodeB.getBoundingClientRect();
-
-        if (rectA.left === rectB.left || rectA.top === rectB.top) {
-          graph.addUndirectedEdge(indexA.toString(), indexB.toString());
-        }
-      }
+export default function moveSnake() {
+  function buildGraph(): Graph {
+    const nodes = Array.from(document.querySelectorAll<HTMLElement>('.cross'));
+    const graph = new Graph({ multi: true });
+    nodes.forEach((node, index) => {
+      graph.addNode(index.toString(), { element: node });
     });
-  });
 
-  return graph;
-}
+    nodes.forEach((nodeA, indexA) => {
+      nodes.forEach((nodeB, indexB) => {
+        if (indexA !== indexB) {
+          const rectA = nodeA.getBoundingClientRect();
+          const rectB = nodeB.getBoundingClientRect();
 
-function startAnimation() {
-  snake.style.animation = 'move 2s linear infinite';
-}
+          if (rectA.left === rectB.left || rectA.top === rectB.top) {
+            graph.addUndirectedEdge(indexA.toString(), indexB.toString());
+          }
+        }
+      });
+    });
 
-function createAnimation(name: string, frames: Frame[]) {
-  const style = document.createElement('style');
-  let keyFrames = `@keyframes ${name} {`;
+    return graph;
+  }
 
-  frames.forEach((fr) => {
-    keyFrames += `${fr.keyframe}% {transform: translate(${fr.x}px, ${fr.y}px);}`;
-  });
-
-  keyFrames += '}';
-  style.innerHTML = keyFrames;
-  document.getElementsByTagName('head')[0].appendChild(style);
-}
-
-export function moveSnake() {
-  const crosses = Array.from(document.querySelectorAll<HTMLElement>('.cross'));
-  const graph = buildGraph(crosses);
-  const selected = _.sampleSize(graph.nodes(), 2);
+  const graph = buildGraph();
+  const selected = sampleSize(graph.nodes(), 2);
   const path = bidirectional(graph, selected[0], selected[1]);
   if (!path) {
     return;
   }
 
-  const frames: Frame[] = [];
-  const divider = 100 / (path.length - 1);
-  path.forEach((p, i) => {
-    const node = graph.getNodeAttribute(p, 'element') as HTMLElement;
-    const rect = node.getBoundingClientRect();
-    const frame: Frame = { keyframe: divider * i, x: rect.x, y: rect.y };
-    frames.push(frame);
-  });
+  generateLines(graph, path);
 
-  createAnimation('move', frames);
-  startAnimation();
+  // anime({
+  //   targets: element,
+  //   keyframes: [{ translateY: -40 }, { translateX: 250 }, { translateY: 40 }, { translateX: 0 }, { translateY: 0 }],
+  //   duration: 4000,
+  //   loop: true,
+  // });
 }
 
-type Frame = {
-  keyframe: number;
-  x: number;
-  y: number;
-};
+function generateLines(graph: Graph, path: ShortestPath) {
+  const offset = 7.5;
+  let prevIndex = 0;
+  for (let i = 1; i <= path.length; i++) {
+    const prev = getElement(graph, path[prevIndex]).getBoundingClientRect();
+    const current = getElement(graph, path[i]).getBoundingClientRect();
+
+    const top = current.top < prev.top ? `${current.top + offset}px` : `${prev.top + offset}px`;
+    const left = current.left < prev.left ? `${current.left + offset}px` : `${prev.left + offset}px`;
+    const line = createLine(top, left);
+
+    if (prev.top === current.top) {
+      // horizontal
+      const width = Math.abs(current.x - prev.x);
+      line.style.width = `${width}px`;
+    } else {
+      // vertical
+      const height = Math.abs(current.y - prev.y);
+      line.style.height = `${height}px`;
+    }
+
+    prevIndex = prevIndex + 1;
+  }
+}
+
+function createLine(top: string, left: string): HTMLDivElement {
+  const line = document.createElement('div');
+  line.style.position = 'absolute';
+  line.style.zIndex = '90';
+  line.style.backgroundColor = 'orange';
+  line.style.height = '2px';
+  line.style.width = '2px';
+  line.style.top = top;
+  line.style.left = left;
+  ground!.appendChild(line);
+  return line;
+}

@@ -1,0 +1,71 @@
+<!-- ---
+
+---
+
+<div id="vsnake" class="loader-line-vertical"></div>
+<div id="hsnake" class="loader-line"></div>
+
+<style>
+  .loader-line {
+    height: 1px;
+    overflow: hidden;
+    background-color: transparent;
+    z-index: 100;
+    position: absolute;
+  }
+
+  .loader-line:before {
+    content: '';
+    position: absolute;
+    left: -50%;
+    height: 3px;
+    width: 40%;
+    background-color: coral;
+    -webkit-animation: lineAnimH 2s linear 1;
+    -moz-animation: lineAnimH 2s linear 1;
+  }
+  @keyframes lineAnimH {
+    0% {
+      left: -40%;
+    }
+    50% {
+      left: 20%;
+      width: 80%;
+    }
+    100% {
+      left: 100%;
+      width: 100%;
+    }
+  }
+  .loader-line-vertical {
+    width: 1px;
+    overflow: hidden;
+    background-color: transparent;
+    z-index: 100;
+    position: absolute;
+  }
+
+  .loader-line-vertical:before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    width: 3px;
+    height: 40%;
+    background-color: coral;
+    -webkit-animation: lineAnimV 1s linear 1;
+    -moz-animation: lineAnimV 1s linear 1;
+  }
+  @keyframes lineAnimV {
+    0% {
+      top: -40%;
+    }
+    50% {
+      top: 20%;
+      height: 80%;
+    }
+    100% {
+      top: 100%;
+      height: 100%;
+    }
+  }
+</style> -->

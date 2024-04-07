@@ -17,6 +17,7 @@
     "@fontsource-variable/jetbrains-mono": "^5.0.20",
     "@fontsource/space-mono": "^5.0.19",
     "@typescript-eslint/eslint-plugin": "^7.4.0",
+    "animejs": "^3.2.2",
     "astro": "^4.5.9",
     "astro-icon": "^1.1.0",
     "graphology": "^0.25.4",
@@ -27,6 +28,7 @@
     "typescript": "^5.4.3"
   },
   "devDependencies": {
+    "@types/animejs": "^3.1.12",
     "@types/lodash": "^4.17.0",
     "@typescript-eslint/parser": "^7.4.0",
     "eslint": "^8.57.0",
