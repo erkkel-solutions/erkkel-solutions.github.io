@@ -19,15 +19,10 @@
     height: 2px;
     width: 2px;
     z-index: 90;
-  }
-
-  .hline {
-    background: linear-gradient(90deg, transparent calc(100% / 3), orange 0 calc(2 * 100% / 3), transparent 0);
+    top: var(--top);
+    left: var(--left);
+    background: linear-gradient(var(--deg), transparent calc(100% / 3), orange 0 calc(2 * 100% / 3), transparent 0);
     background-size: 400% 400%;
-  }
-
-  .vline {
-    background: linear-gradient(0deg, transparent 33%, orange 0 calc(2 * 100% / 3), transparent 0);
-    background-size: 400% 400%;
+    background-position: 0 0;
   }
 </style>

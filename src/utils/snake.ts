@@ -2,6 +2,7 @@ import Graph from 'graphology';
 import { bidirectional, type ShortestPath } from 'graphology-shortest-path/unweighted';
 import anime from 'animejs/lib/anime.es.js';
 import { sampleSize } from 'lodash';
+import type { AnimeAnimParams } from 'animejs';
 
 function getElement(graph: Graph, index: string) {
   return graph.getNodeAttribute(index, 'element') as HTMLElement;
@@ -50,69 +51,119 @@ export default function moveSnake() {
     easing: 'linear',
   });
 
-  const horizontalKeyFrames = [
-    {
-      backgroundPositionX: '100%',
-      backgroundPositionY: 0,
-    },
-  ];
-  const verticalKeyFrames = [
-    {
-      backgroundPositionX: 0,
-      backgroundPositionY: '100%',
-    },
-  ];
-
   lines.forEach((line) => {
     timeline.add({
-      targets: line,
-      keyframes: isLineHorizontal(line) ? horizontalKeyFrames : verticalKeyFrames,
+      targets: line.element,
+      keyframes: getKeyFrame(line.direction),
     });
   });
 }
 
-function isLineHorizontal(line: HTMLDivElement) {
-  return line.style.height === '2px' || line.style.height === '';
+function getKeyFrame(direction: Direction): AnimeAnimParams[] {
+  // downward: (0 0) -> (0 100%)
+  // upward: (0 100%) -> (0 0)
+  // rightward: (100% 0) -> (0 0)
+  // leftward: (0 0) -> (100% 0)
+
+  let keyFrame: AnimeAnimParams[];
+
+  switch (direction) {
+    case 'upward':
+      keyFrame = [
+        {
+          backgroundPositionX: 0,
+          backgroundPositionY: 0,
+        },
+      ];
+      break;
+    case 'downward':
+      keyFrame = [
+        {
+          backgroundPositionX: 0,
+          backgroundPositionY: '100%',
+        },
+      ];
+      break;
+    case 'leftward':
+      keyFrame = [
+        {
+          backgroundPositionX: '100%',
+          backgroundPositionY: 0,
+        },
+      ];
+      break;
+    case 'rightward':
+      keyFrame = [
+        {
+          backgroundPositionX: 0,
+          backgroundPositionY: 0,
+        },
+      ];
+      break;
+    default:
+      throw new Error('Unknown direction: ' + direction);
+  }
+
+  console.log(keyFrame);
+
+  return keyFrame;
 }
 
-function generateLines(graph: Graph, path: ShortestPath): HTMLDivElement[] {
-  const offset = 7.5;
+function generateLines(graph: Graph, path: ShortestPath): Line[] {
+  const array: Line[] = [];
+
   let prevIndex = 0;
-
-  const array: HTMLDivElement[] = [];
-
   for (let i = 1; i < path.length; i++) {
     const prev = getElement(graph, path[prevIndex]).getBoundingClientRect();
     const current = getElement(graph, path[i]).getBoundingClientRect();
 
-    const top = current.top < prev.top ? `${current.top + offset}px` : `${prev.top + offset}px`;
-    const left = current.left < prev.left ? `${current.left + offset}px` : `${prev.left + offset}px`;
-    const line = createLine(top, left);
-
-    if (prev.top === current.top) {
-      // horizontal
-      const width = Math.abs(current.x - prev.x);
-      line.style.width = `${width}px`;
-      line.classList.add('hline');
-    } else {
-      // vertical
-      const height = Math.abs(current.y - prev.y);
-      line.style.height = `${height}px`;
-      line.classList.add('vline');
-    }
+    const line = createLine(prev, current);
+    array.push(line);
 
     prevIndex = prevIndex + 1;
-    array.push(line);
   }
 
   return array;
 }
 
-function createLine(top: string, left: string): HTMLDivElement {
+function createLine(prev: DOMRect, current: DOMRect): Line {
   const line = document.createElement('div');
-  line.className = 'line';
-  line.style.top = top;
-  line.style.left = left;
+  line.classList.add('line');
   ground!.appendChild(line);
-  return line;
+
+  const offset = 7.5;
+  const top = current.top < prev.top ? `${current.top + offset}px` : `${prev.top + offset}px`;
+  const left = current.left < prev.left ? `${current.left + offset}px` : `${prev.left + offset}px`;
+  line.style.setProperty('--top', top);
+  line.style.setProperty('--left', left);
+
+  let direction: Direction;
+  if (prev.top === current.top) {
+    // horizontal
+    const width = Math.abs(current.x - prev.x);
+    line.style.setProperty('--deg', '90deg');
+    line.style.setProperty('--initialX', '0');
+    line.style.setProperty('--initialY', '0');
+    line.style.width = `${width}px`;
+    direction = 'leftward';
+  } else {
+    // vertical
+    const height = Math.abs(current.y - prev.y);
+    line.style.setProperty('--deg', '0deg');
+    line.style.setProperty('--initialX', '0');
+    line.style.setProperty('--initialY', '0');
+    line.style.height = `${height}px`;
+    direction = 'downward';
+  }
+
+  return {
+    direction: direction,
+    element: line,
+  };
 }
+
+type Direction = 'leftward' | 'rightward' | 'upward' | 'downward';
+type Line = {
+  direction: Direction;
+  element: HTMLElement;
+};
