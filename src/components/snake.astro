@@ -5,11 +5,17 @@
 <div id="snake-ground"></div>
 
 <script>
-  import moveSnake from '@utils/snake';
+  import { moveSnake, deleteSnake } from '@utils/snake';
 
-  // TODO: andle resize of the window
-  document.addEventListener('DOMContentLoaded', function () {
-    moveSnake();
+  window.addEventListener('resize', () => {
+    deleteSnake();
+  });
+
+  document.addEventListener('DOMContentLoaded', () => {
+    setInterval(() => {
+      deleteSnake();
+      moveSnake();
+    }, 10000);
   });
 </script>
 
@@ -21,7 +27,7 @@
     z-index: 90;
     top: var(--top);
     left: var(--left);
-    background: linear-gradient(var(--deg), transparent calc(100% / 3), orange 0 calc(2 * 100% / 3), transparent 0);
+    background: linear-gradient(var(--deg), transparent calc(100% / 3), #ff5c00 0 calc(2 * 100% / 3), transparent 0);
     background-size: 400% 400%;
     background-position: 0 0;
   }

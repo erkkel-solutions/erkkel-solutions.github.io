@@ -33,25 +33,21 @@ function buildGraph(): Graph {
   return graph;
 }
 
-export default function moveSnake() {
+export function moveSnake() {
   if (!ground) {
     return;
   }
 
   const graph = buildGraph();
-  console.log('Graph: ', graph);
   const selected = sampleSize(graph.nodes(), 2);
   const path = bidirectional(graph, selected[0], selected[1]);
   if (!path) {
     return;
   }
-  console.log('Path: ', path);
   const lines = generateLines(graph, path);
-  console.log('Lines: ', lines);
 
   const timeline = anime.timeline({
     easing: 'linear',
-    loop: true,
   });
 
   for (let i = 0; i < lines.length; i++) {
@@ -167,6 +163,10 @@ function createLine(prev: DOMRect, current: DOMRect): Line {
     element: line,
     duration: 4000,
   };
+}
+
+export function deleteSnake() {
+  ground?.replaceChildren();
 }
 
 type Direction = 'leftward' | 'rightward' | 'upward' | 'downward';
