@@ -39,24 +39,34 @@ export default function moveSnake() {
   }
 
   const graph = buildGraph();
+  console.log('Graph: ', graph);
   const selected = sampleSize(graph.nodes(), 2);
   const path = bidirectional(graph, selected[0], selected[1]);
   if (!path) {
     return;
   }
+  console.log('Path: ', path);
   const lines = generateLines(graph, path);
+  console.log('Lines: ', lines);
 
   const timeline = anime.timeline({
-    duration: 2000,
     easing: 'linear',
+    loop: true,
   });
 
-  lines.forEach((line) => {
-    timeline.add({
-      targets: line.element,
-      keyframes: getKeyFrame(line.direction),
-    });
-  });
+  for (let i = 0; i < lines.length; i++) {
+    const line = lines[i];
+    const offset = i === 0 ? '' : `-=${(lines[i - 1].duration / 3) * 2}`;
+
+    timeline.add(
+      {
+        targets: line.element,
+        keyframes: getKeyFrame(line.direction),
+        duration: line.duration,
+      },
+      offset
+    );
+  }
 }
 
 function getKeyFrame(direction: Direction): AnimeAnimParams[] {
@@ -68,15 +78,15 @@ function getKeyFrame(direction: Direction): AnimeAnimParams[] {
   let keyFrame: AnimeAnimParams[];
 
   switch (direction) {
-    case 'upward':
+    case 'downward':
       keyFrame = [
         {
           backgroundPositionX: 0,
-          backgroundPositionY: 0,
+          backgroundPositionY: '-150%',
         },
       ];
       break;
-    case 'downward':
+    case 'upward':
       keyFrame = [
         {
           backgroundPositionX: 0,
@@ -95,7 +105,7 @@ function getKeyFrame(direction: Direction): AnimeAnimParams[] {
     case 'rightward':
       keyFrame = [
         {
-          backgroundPositionX: 0,
+          backgroundPositionX: '-150%',
           backgroundPositionY: 0,
         },
       ];
@@ -103,8 +113,6 @@ function getKeyFrame(direction: Direction): AnimeAnimParams[] {
     default:
       throw new Error('Unknown direction: ' + direction);
   }
-
-  console.log(keyFrame);
 
   return keyFrame;
 }
@@ -138,27 +146,26 @@ function createLine(prev: DOMRect, current: DOMRect): Line {
   line.style.setProperty('--left', left);
 
   let direction: Direction;
-  if (prev.top === current.top) {
+  if (prev.x !== current.x) {
     // horizontal
-    const width = Math.abs(current.x - prev.x);
+    line.style.width = `${Math.abs(current.x - prev.x)}px`;
     line.style.setProperty('--deg', '90deg');
-    line.style.setProperty('--initialX', '0');
     line.style.setProperty('--initialY', '0');
-    line.style.width = `${width}px`;
-    direction = 'leftward';
+    direction = prev.x < current.x ? 'rightward' : 'leftward';
+    line.style.setProperty('--initialX', direction === 'rightward' ? '100%' : '0');
   } else {
     // vertical
-    const height = Math.abs(current.y - prev.y);
+    line.style.height = `${Math.abs(current.y - prev.y)}px`;
     line.style.setProperty('--deg', '0deg');
     line.style.setProperty('--initialX', '0');
-    line.style.setProperty('--initialY', '0');
-    line.style.height = `${height}px`;
-    direction = 'downward';
+    direction = prev.y < current.y ? 'downward' : 'upward';
+    line.style.setProperty('--initialY', direction === 'upward' ? '100%' : '0');
   }
 
   return {
     direction: direction,
     element: line,
+    duration: 4000,
   };
 }
 
@@ -166,4 +173,5 @@ type Direction = 'leftward' | 'rightward' | 'upward' | 'downward';
 type Line = {
   direction: Direction;
   element: HTMLElement;
+  duration: number;
 };
