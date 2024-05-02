@@ -15,7 +15,7 @@ const size = 16; // 1em;
 const pos = `-${size / 2 + 0.5}px`; // needed some additional fine-tuning
 ---
 
-<div class:list={['cross-container border border-gray-600 p-4', className]} {...rest}>
+<div class:list={['cross-container border border-gray-600', className]} {...rest}>
   {showTopLeft ? <Icon name="cross" class="cross cross-top-left" size={size} /> : ''}
   {showTopRight ? <Icon name="cross" class="cross cross-top-right" size={size} /> : ''}
   {showBottomLeft ? <Icon name="cross" class="cross cross-bottom-left" size={size} /> : ''}
