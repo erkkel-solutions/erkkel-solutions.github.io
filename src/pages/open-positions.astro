@@ -1,0 +1,102 @@
+---
+import Layout from '@layouts/layout.astro';
+import Block from '@components/block.astro';
+import { Icon } from 'astro-icon/components';
+
+type Position = {
+  title: string;
+  description: string;
+  link: string;
+};
+
+const positions: Position[] = [
+  {
+    title: 'Senior Software Developer',
+    description:
+      'Seeking an expert Senior Software Developer to lead software design and development. Requires mastery in multiple programming languages, understanding of software architecture, and experience with agile methodologies. Responsible for developing high-quality software, mentoring juniors, and driving technological innovation.',
+    link: '#',
+  },
+  {
+    title: 'Principal Solutions Architect',
+    description:
+      'Looking for a visionary Principal Solutions Architect to define technology strategy and architecture. Must have expertise in architectural principles, cloud computing, and software development. Responsibilities include designing solutions, leading architectural reviews, and guiding development teams.',
+    link: '#',
+  },
+  {
+    title: 'Lead DevOps Engineer',
+    description:
+      'In search of a Lead DevOps Engineer with expertise in CI/CD pipelines, IaC, cloud services, and security. Will implement DevOps processes, resolve production issues, and ensure continuous delivery. Also responsible for mentoring and fostering innovation within the team.',
+    link: '#',
+  },
+  {
+    title: 'Chief Technology Officer',
+    description:
+      'Visionary CTO to lead our technological direction and innovation. Experience in strategic planning, overseeing development teams, and implementing tech solutions to meet business objectives. Strong leadership and communication skills required.',
+    link: '#',
+  },
+  {
+    title: 'Data Science Director',
+    description:
+      'Director-level role for an expert in data science to lead analytics initiatives. Responsible for data strategy, machine learning models, and insights generation. Requires deep analytical skills and the ability to translate data into business value.',
+    link: '#',
+  },
+];
+
+function padWithZeros(num: number): string {
+  return num.toString().padStart(3, '0');
+}
+---
+
+<Layout title="Open Positions">
+  <main>
+    <Block class="border-t-0" showTopLeft={false} showTopRight={false}>
+      <div class="grid grid-cols-3 grid-rows-3">
+        <Block class="row-span-2 col-span-2 border-t-0 border-l-0 border-r-0 p-10" showTopLeft={false}>
+          <h1 class="font-display font-thin text-8xl leading-relaxed">Open <span class="font-bold">positions</span></h1>
+        </Block>
+        <Block class="border-t-0 border-r-0 p-10">
+          <p class="font-mono text-orange-500">#IYKYK</p>
+          <p class="font-mono font-light text-2xl">
+            Check out our <a href="#" class="text-orange-500 underline">latest article</a> about expert's dilemmas
+          </p>
+        </Block>
+        <Block
+          class="row-span-2 border-t-0 border-r-0 border-b-0 flex justify-center items-center p-10"
+          showTopLeft={false}
+          showTopRight={false}
+          showBottomRight={false}
+          showBottomLeft={false}
+        >
+          <Icon name="open-positions" width={283} height={135} />
+        </Block>
+        <Block class="col-span-2 border-0 p-10" showTopLeft={false} showBottomLeft={false}>
+          <p class="font-mono text-orange-500">#WYSIWYG</p>
+          <p class="font-mono font-light text-2xl">Browse through our platform to get exactly what you deserve, we mean it</p>
+        </Block>
+      </div>
+    </Block>
+    <Block class="border-t-0" showTopLeft={false} showTopRight={false}>
+      <div class="flex flex-col">
+        {
+          positions.map((pos, index) => (
+            <Block class="flex flex-row border-l-0 border-r-0 border-t-0" showBottomLeft={false} showBottomRight={false}>
+              <Block
+                class="px-8 border-t-0 border-l-0 border-b-0 basis-1/3 flex flex-col place-content-around"
+                showTopLeft={false}
+                showBottomLeft={false}
+                showTopRight={index === 0}
+              >
+                <p class="font-mono text-2xl">{pos.title}</p>
+                <p class="font-thin text-5xl">{padWithZeros(++index)}</p>
+              </Block>
+              <div class="p-8 basis-2/3">
+                <p class="font-mono mb-4">{pos.description}</p>
+                {pos.link && <button class="text-orange-600 uppercase font-mono font-bold">+ Tell me more</button>}
+              </div>
+            </Block>
+          ))
+        }
+      </div>
+    </Block>
+  </main>
+</Layout>
