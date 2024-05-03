@@ -9,18 +9,20 @@ import Compass from '@components/compass.astro';
 <Layout title="">
   <main>
     <Block class="border-t-0" showTopLeft={false} showTopRight={false}>
-      <div class="flex flex-row mx-16 my-12 space-x-20">
+      <div class="flex flex-row px-16 py-12 space-x-20">
         <div class="flex-1 space-y-8">
           <h1 class="font-display font-light text-6xl">Navigating through the coding landscapes</h1>
-          <p class="font-mono">
+          <p class="font-mono mb-8">
             Welcome to Erkkel Solutions' landscape, where expertise meets innovation. Step into our world where every line of code shapes the digital horizon.
             Let's embark on this journey together, transforming ideas into reality and shaping the ever-evolving coding landscape.
           </p>
-          <button class="bg-orange-600 hover:bg-orange-800 text-gray-950 uppercase font-mono font-bold px-6 py-2.5">Get to know us</button>
+          <div>
+            <a href="/about-us" class="bg-orange-600 hover:bg-orange-800 text-gray-950 uppercase font-mono font-bold px-6 py-2.5">Get to know us</a>
+          </div>
         </div>
         <Compass />
       </div>
-      <div class="flex justify-center">
+      <div class="flex justify-center p-4">
         <Image src={mountainImage} alt="mountain" />
       </div>
     </Block>
