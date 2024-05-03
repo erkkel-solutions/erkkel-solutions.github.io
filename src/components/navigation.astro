@@ -1,6 +1,12 @@
 ---
 import Block from './block.astro';
 import Logo from './logo.astro';
+
+const pathName = new URL(Astro.request.url).pathname;
+const currentPath = pathName.slice(1);
+
+const linkClass =
+  'font-mono [&.active]:text-orange-500 [&.active]:drop-shadow-[0_0_0.25em_rgba(255,92,0,1)] hover:text-orange-500 hover:drop-shadow-[0_0_0.25em_rgba(255,92,0,1)]';
 ---
 
 <nav>
@@ -10,11 +16,11 @@ import Logo from './logo.astro';
         <Logo />
       </Block>
       <Block class="flex flex-auto items-center justify-evenly border-l-0" showTopLeft={false} showBottomLeft={false}>
-        <a href="#" class="font-mono hover:text-orange-500 hover:drop-shadow-[0_0_0.25em_rgba(255,92,0,1)]">About us</a>
-        <a href="#" class="font-mono hover:text-orange-500 hover:drop-shadow-[0_0_0.25em_rgba(255,92,0,1)]">Services</a>
-        <a href="#" class="font-mono hover:text-orange-500 hover:drop-shadow-[0_0_0.25em_rgba(255,92,0,1)]">Clients</a>
-        <a href="#" class="font-mono hover:text-orange-500 hover:drop-shadow-[0_0_0.25em_rgba(255,92,0,1)]">Open positions</a>
-        <a href="/contact" class="font-mono hover:text-orange-500 hover:drop-shadow-[0_0_0.25em_rgba(255,92,0,1)]">Contact</a>
+        <a href="/about-us" class={`${currentPath === 'about-us' ? 'active' : ''} ${linkClass}`}>About us</a>
+        <a href="/services" class={`${currentPath === 'services' ? 'active' : ''} ${linkClass}`}>Services</a>
+        <a href="/clients" class={`${currentPath === 'clients' ? 'active' : ''} ${linkClass}`}>Clients</a>
+        <a href="/open-positions" class={`${currentPath === 'open-positions' ? 'active' : ''} ${linkClass}`}>Open positions</a>
+        <a href="/contact" class={`${currentPath === 'contact' ? 'active' : ''} ${linkClass}`}>Contact</a>
       </Block>
     </div>
   </div>
