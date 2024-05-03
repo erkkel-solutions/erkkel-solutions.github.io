@@ -8,8 +8,9 @@ import { Icon } from 'astro-icon/components';
   <main>
     <div class="flex flex-row">
       <Block class="basis-2/3 flex-initial border-t-0 p-10" showTopLeft={false}>
-        <h1 class="font-display font-thin text-9xl">Let's get</h1>
-        <h1 class="font-display font-medium text-9xl">in touch</h1>
+        <div class="max-w-xl">
+          <h1 class="font-display font-thin text-8xl leading-relaxed">Let's get <span class="font-bold">in touch</span></h1>
+        </div>
       </Block>
       <Block class="basis-1/3 flex-initial border-t-0 flex justify-center items-center" showTopLeft={false} showBottomLeft={false} showTopRight={false}>
         <Icon name="contact" width={296} height={159} />
@@ -18,43 +19,43 @@ import { Icon } from 'astro-icon/components';
     <div class="flex flex-row h-full">
       <Block class="basis-2/3 flex-initial border-t-0 p-10" showTopLeft={false} showTopRight={false}>
         <form>
-          <h1 class="font-display font-light text-3xl">Ready to transform your vision into reality?</h1>
+          <h1 class="font-display font-light text-3xl mb-16">Ready to transform your vision into reality?</h1>
           <div class="flex flex-row my-8">
             <div class="basis-1/2 flex flex-col mr-4 justify-between">
               <input
                 type="text"
-                class="appearance-none bg-transparent border-b border-gray-600 p-4 mb-4 focus:outline-none font-mono placeholder-white"
+                class="appearance-none bg-transparent border-b border-gray-600 p-4 mb-4 focus:outline-none font-mono placeholder-gray-100"
                 placeholder="Name"
                 aria-label="Name"
               />
               <input
                 type="text"
-                class="appearance-none bg-transparent border-b border-gray-600 p-4 mb-4 focus:outline-none font-mono placeholder-white"
+                class="appearance-none bg-transparent border-b border-gray-600 p-4 mb-4 focus:outline-none font-mono placeholder-gray-100"
                 placeholder="Company"
                 aria-label="Company"
               />
               <input
                 type="email"
-                class="appearance-none bg-transparent border-b border-gray-600 p-4 mb-4 focus:outline-none font-mono placeholder-white"
+                class="appearance-none bg-transparent border-b border-gray-600 p-4 mb-4 focus:outline-none font-mono placeholder-gray-100"
                 placeholder="Email"
                 aria-label="Email"
               />
               <input
                 type="tel"
-                class="appearance-none bg-transparent border-b border-gray-600 p-4 mb-4 focus:outline-none font-mono placeholder-white"
+                class="appearance-none bg-transparent border-b border-gray-600 p-4 mb-4 focus:outline-none font-mono placeholder-gray-100"
                 placeholder="Phone"
                 aria-label="Phone"
               />
             </div>
             <div class="basis-1/2">
               <textarea
-                class="appearance-none bg-transparent border border-gray-600 focus:outline-none p-4 h-full w-full font-mono placeholder-white"
+                class="appearance-none bg-transparent border border-gray-600 focus:outline-none p-4 h-full w-full font-mono placeholder-gray-100"
                 placeholder="How can we help?"></textarea>
             </div>
           </div>
 
           <div class="flex justify-end">
-            <button class="bg-orange-600 hover:bg-orange-800 text-gray-950 uppercase font-mono font-bold px-6 py-2.5">Send message</button>
+            <button class="bg-orange-600 hover:bg-orange-800 text-gray-950 uppercase font-mono font-bold px-6 py-2.5 mt-4">Send message</button>
           </div>
         </form>
       </Block>
