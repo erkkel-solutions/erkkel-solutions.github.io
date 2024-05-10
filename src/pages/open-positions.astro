@@ -52,7 +52,7 @@ function padWithZeros(num: number): string {
     <Block class="border-t-0" showTopLeft={false} showTopRight={false}>
       <div class="grid grid-cols-3 grid-rows-3">
         <Block class="row-span-2 col-span-2 border-t-0 border-l-0 border-r-0 p-10" showTopLeft={false}>
-          <h1 class="font-display font-thin text-8xl leading-relaxed">Open <span class="font-bold">positions</span></h1>
+          <h1 class="font-display font-thin text-8xl leading-relaxed">Open <p class="font-bold">positions</p></h1>
         </Block>
         <Block class="border-t-0 border-r-0 p-10">
           <p class="font-mono text-orange-500">#IYKYK</p>
@@ -91,7 +91,11 @@ function padWithZeros(num: number): string {
               </Block>
               <div class="p-8 basis-2/3">
                 <p class="font-mono mb-4">{pos.description}</p>
-                {pos.link && <button class="text-orange-600 uppercase font-mono font-bold">+ Tell me more</button>}
+                {pos.link && (
+                  <a href="/position-details" class="text-orange-600 uppercase font-mono font-bold">
+                    + Tell me more
+                  </a>
+                )}
               </div>
             </Block>
           ))

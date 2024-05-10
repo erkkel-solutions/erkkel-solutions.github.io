@@ -11,27 +11,27 @@ type Service = {
 
 const services: Service[] = [
   {
-    name: 'Pioneering Digital Products',
+    name: 'Legacy System Modernization',
     description:
-      'Tailored software solutions to meet your unique business needs. Our team leverages the latest technologies to build scalable and robust custom applications.',
+      'Modernize and optimize your legacy systems with our continuous engineering services. We enhance performance, security, and maintainability, ensuring your systems remain robust and reliable.',
     logo: 'service-1',
   },
   {
-    name: 'Immersive Design',
+    name: 'Innovative Software Development',
     description:
-      'Tailored software solutions to meet your unique business needs. Our team leverages the latest technologies to build scalable and robust custom applications.',
+      'From concept to deployment, we develop custom software solutions that drive innovation and deliver measurable results. Let us help you bring your groundbreaking ideas to life and achieve your business goals.',
     logo: 'service-2',
   },
   {
-    name: 'Heuristic Approach',
+    name: 'DevOps Infrastructure Management',
     description:
-      'Tailored software solutions to meet your unique business needs. Our team leverages the latest technologies to build scalable and robust custom applications.',
+      'Streamline your software delivery pipelines with our DevOps services. From designing and optimizing CI/CD pipelines to managing and operating your infrastructure, we help you build a resilient and scalable environment that drives continuous innovation.',
     logo: 'service-3',
   },
   {
-    name: 'Heuristic Approach',
+    name: 'UX Design Services',
     description:
-      'Tailored software solutions to meet your unique business needs. Our team leverages the latest technologies to build scalable and robust custom applications.',
+      'Deliver exceptional user experiences with our UX design services. From wireframing and prototyping to user testing and iterative design, we help you create intuitive, user-friendly interfaces that drive engagement and business results.',
     logo: 'service-3',
   },
 ];
@@ -42,7 +42,7 @@ const services: Service[] = [
     <Block class="border-t-0" showTopLeft={false} showTopRight={false}>
       <div class="flex flex-row">
         <Block class="basis-2/3 border-t-0 border-l-0 border-r-0 p-10 pr-24" showTopLeft={false} showBottomLeft={false}>
-          <h1 class="font-display font-thin text-5xl leading-relaxed">We specialize in <span class="text-orange-500">Bridging the Tech Canyon</span></h1>
+          <h1 class="font-display font-thin text-5xl leading-relaxed">We specialize in <p class="text-orange-500">Bridging the Tech Canyon</p></h1>
           <p class="font-mono font-light text-2xl">offering a range of innovative solutions tailored to meet your digital needs.</p>
         </Block>
         <Block
@@ -65,13 +65,17 @@ const services: Service[] = [
         <div class="basis-3/5 flex flex-col">
           {
             services.map((service) => (
-              <Block class="border-t-0 border-l-0 border-r-0 p-4 grid grid-cols-5 items-center" showTopLeft={false} showTopRight={false}>
-                <Icon name={service.logo} height={100} width={100} />
-                <div class="col-span-3">
-                  <h3 class="font-mono text-2xl">{service.name}</h3>
-                </div>
-                <button class="toggle-button text-orange-600 uppercase font-mono font-bold">+ More</button>
-                <div class="font-mono col-start-2 col-span-3 hidden">
+              <Block class="flex flex-col p-8 border-t-0 border-l-0 border-r-0" showTopLeft={false} showTopRight={false}>
+                <button class="flex-1 toggle-button">
+                  <div class="flex items-center">
+                    <Icon name={service.logo} height={100} width={100} />
+                    <div>
+                      <h3 class="font-mono text-2xl pl-8">{service.name}</h3>
+                    </div>
+                    <span class="indicator text-orange-600 uppercase font-mono font-bold flex flex-1 justify-end">+ More</span>
+                  </div>
+                </button>
+                <div class="font-mono mx-32 hidden">
                   Tailored software solutions to meet your unique business needs. Our team leverages the latest technologies to build scalable and robust custom
                   applications.
                 </div>
@@ -93,7 +97,10 @@ const services: Service[] = [
         const content = button.nextElementSibling;
         content?.classList.toggle('hidden');
 
-        button.innerHTML = content?.classList.contains('hidden') ? '+ More' : '- Less';
+        const indicator = button.querySelector('.indicator');
+        if (indicator) {
+          indicator.innerHTML = content?.classList.contains('hidden') ? '+ More' : '- Less';
+        }
       });
     });
   });

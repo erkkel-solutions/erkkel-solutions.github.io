@@ -11,6 +11,10 @@
     deleteSnake();
   });
 
+  window.addEventListener('scroll', () => {
+    deleteSnake();
+  });
+
   document.addEventListener('DOMContentLoaded', () => {
     setInterval(() => {
       deleteSnake();
