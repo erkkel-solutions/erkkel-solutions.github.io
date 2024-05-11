@@ -12,7 +12,7 @@ const { title } = Astro.props;
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
   <head>
     <meta charset="UTF-8" />
     <meta name="description" content="Astro description" />
@@ -22,11 +22,10 @@ const { title } = Astro.props;
     <title>Erkkel Solutions {title && '-'} {title}</title>
   </head>
   <body class="bg-gray-950 text-gray-100">
-    <div class="container mx-auto mt-8">
+    <div class="flex flex-col h-screen p-8">
       <Navigation />
       <slot />
     </div>
   </body>
   <Snake />
-  <script is:inline src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
 </html>

@@ -45,6 +45,11 @@ export default {
         // outline: '#2b2b2b',
       },
     },
+    backgroundImage: {
+      mountain: "url('/images/mountain.png')",
+      aboutUs1: "url('/images/about-us-1.png')",
+      aboutUs2: "url('/images/about-us-2.png')",
+    },
   },
   plugins: [],
 };
