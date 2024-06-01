@@ -25,9 +25,9 @@ const contactInfos: ContactInfo[] = [
 ---
 
 <Layout title="Contact">
-  <main>
-    <Block class="border-t-0" showTopLeft={false} showTopRight={false}>
-      <div class="grid grid-cols-3 grid-rows-1">
+  <main class="flex h-full flex-col">
+    <Block class="basis-1/3 border-t-0" showTopLeft={false} showTopRight={false}>
+      <div class="grid grid-cols-3 grid-rows-1 h-full">
         <Block class="row-span-2 col-span-2 border-t-0 border-l-0 border-b-0 border-r-0 p-10 pr-32" showTopLeft={false}>
           <h1 class="font-display font-thin text-8xl leading-relaxed">Let's get <p class="font-bold">in touch</p></h1>
         </Block>
@@ -42,8 +42,8 @@ const contactInfos: ContactInfo[] = [
         </Block>
       </div>
     </Block>
-    <Block class="border-t-0" showTopLeft={false} showTopRight={false}>
-      <div class="grid grid-cols-3">
+    <Block class="basis-2/3 border-t-0" showTopLeft={false} showTopRight={false}>
+      <div class="grid grid-cols-3 h-full">
         <Block class="row-span-4 col-span-2 border-t-0 border-l-0 border-b-0 p-10" showTopLeft={false}>
           <form>
             <h2 class="font-display font-light text-2xl mb-16">Ready to transform <span class="font-bold">your vision into reality?</span></h2>

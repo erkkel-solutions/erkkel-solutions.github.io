@@ -38,9 +38,9 @@ const services: Service[] = [
 ---
 
 <Layout title="Services">
-  <main>
-    <Block class="border-t-0" showTopLeft={false} showTopRight={false}>
-      <div class="flex flex-row">
+  <main class="flex h-full flex-col">
+    <Block class="basis-1/3 border-t-0" showTopLeft={false} showTopRight={false}>
+      <div class="flex flex-row h-full">
         <Block class="basis-2/3 border-t-0 border-l-0 border-r-0 p-10 pr-24" showTopLeft={false} showBottomLeft={false}>
           <h1 class="font-display font-thin text-5xl leading-relaxed">We specialize in <p class="text-orange-500">Bridging the Tech Canyon</p></h1>
           <p class="font-mono font-light text-2xl">offering a range of innovative solutions tailored to meet your digital needs.</p>
@@ -56,13 +56,13 @@ const services: Service[] = [
         </Block>
       </div>
     </Block>
-    <Block class="border-t-0" showTopLeft={false} showTopRight={false}>
-      <div class="flex flex-row">
-        <Block class="basis-2/5 border-l-0 border-t-0 border-b-0 p-8" showTopLeft={false} showBottomLeft={false}>
+    <Block class="basis-2/3 border-t-0" showTopLeft={false} showTopRight={false}>
+      <div class="flex flex-row h-full">
+        <Block class="basis-1/3 border-l-0 border-t-0 border-b-0 p-8" showTopLeft={false} showBottomLeft={false}>
           <h2 class="font-mono font-light text-2xl leading-relaxed">Offerings</h2>
           <p class="font-mono">Tailored software solutions to meet your unique business needs.</p>
         </Block>
-        <div class="basis-3/5 flex flex-col">
+        <div class="basis-2/3 flex flex-col">
           {
             services.map((service) => (
               <Block class="flex flex-col p-8 border-t-0 border-l-0 border-r-0" showTopLeft={false} showTopRight={false}>
