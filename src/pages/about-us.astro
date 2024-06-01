@@ -43,7 +43,13 @@ import { Icon } from 'astro-icon/components';
         <div class="bg-aboutUs2 bg-no-repeat bg-cover h-full w-full"></div>
         <Icon name="about-us-1" class="absolute -right-[58px] bottom-1/4 z-10" width={116} height={120} />
       </Block>
-      <Block class="basis-2/3 border-t-0 border-l-0 px-32 py-24" showTopLeft={false} showTopRight={false} showBottomLeft={false} showBottomRight={false}>
+      <Block
+        class="basis-2/3 border-t-0 border-l-0 px-32 py-24 content-center"
+        showTopLeft={false}
+        showTopRight={false}
+        showBottomLeft={false}
+        showBottomRight={false}
+      >
         <button onclick="window.scrollTo({ top: 0 })" class="mb-8">
           <Icon name="scroll-down" class="rotate-180" width={38} height={54} />
         </button>
