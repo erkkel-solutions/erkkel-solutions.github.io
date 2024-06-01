@@ -8,22 +8,20 @@ import Compass from '@components/compass.astro';
 
 <Layout title="">
   <main class="flex h-full">
-    <Block class="border-t-0 w-full" showTopLeft={false} showTopRight={false}>
-      <div class="flex flex-row">
-        <div class="basis-2/3 p-24">
-          <h1 class="font-display font-light leading-relaxed text-6xl">Navigating through the coding landscapes</h1>
-          <p class="font-mono text-gray-300">
+    <Block class="border-t-0 w-full flex flex-row p-24" showTopLeft={false} showTopRight={false}>
+        <div class="basis-4/5">
+          <h1 class="font-roboto font-light text-7xl leading-snug">Navigating through the coding landscapes</h1>
+          <p class="text-gray-300 w-4/5 mt-4">
             Welcome to Erkkel Solutions' landscape, where expertise meets innovation. Step into our world where every line of code shapes the digital horizon.
             Let's embark on this journey together, transforming ideas into reality and shaping the ever-evolving coding landscape.
           </p>
-          <div class="mt-16">
-            <a href="/about-us" class="bg-orange-600 hover:bg-orange-800 text-gray-950 uppercase font-mono font-bold px-6 py-2.5">Explore more</a>
+          <div class="mt-12">
+            <a href="/about-us" class="bg-orange-600 hover:bg-orange-800 text-gray-950 uppercase font-bold px-6 py-2.5">Explore more</a>
           </div>
         </div>
-        <div class="basis-1/3 flex justify-center items-center">
+        <div class="basis-1/5 flex justify-center items-top mt-24">
           <Compass />
         </div>
-      </div>
     </Block>
   </main>
 </Layout>

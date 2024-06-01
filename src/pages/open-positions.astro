@@ -51,12 +51,12 @@ function padWithZeros(num: number): string {
   <main class="flex h-full flex-col">
     <Block class="border-t-0" showTopLeft={false} showTopRight={false}>
       <div class="grid grid-cols-3 grid-rows-3">
-        <Block class="row-span-2 col-span-2 border-t-0 border-l-0 border-r-0 p-10" showTopLeft={false}>
-          <h1 class="font-display font-thin text-8xl leading-relaxed">Open <p class="font-bold">positions</p></h1>
+        <Block class="row-span-2 col-span-2 border-t-0 border-l-0 border-r-0 p-10 content-center" showTopLeft={false}>
+          <h1 class="font-roboto font-thin leading-normal text-8xl">Open <p class="font-medium">positions</p></h1>
         </Block>
         <Block class="border-t-0 border-r-0 p-10">
-          <p class="font-mono text-orange-500">#IYKYK</p>
-          <p class="font-mono font-light text-2xl">
+          <p class="text-orange-500 mb-4">#IYKYK</p>
+          <p class="font-roboto font-light text-2xl">
             Check out our <a href="#" class="text-orange-500 underline">latest article</a> about expert's dilemmas
           </p>
         </Block>
@@ -70,8 +70,8 @@ function padWithZeros(num: number): string {
           <Icon name="open-positions" width={283} height={135} />
         </Block>
         <Block class="col-span-2 border-0 p-10" showTopLeft={false} showBottomLeft={false}>
-          <p class="font-mono text-orange-500">#WYSIWYG</p>
-          <p class="font-mono font-light text-2xl">Browse through our platform to get exactly what you deserve, we mean it</p>
+          <p class="text-orange-500 mb-4">#WYSIWYG</p>
+          <p class="font-roboto font-light text-2xl">Browse through our platform to get exactly what you deserve, we mean it</p>
         </Block>
       </div>
     </Block>
@@ -86,13 +86,13 @@ function padWithZeros(num: number): string {
                 showBottomLeft={false}
                 showTopRight={index === 0}
               >
-                <p class="font-mono text-2xl">{pos.title}</p>
-                <p class="font-thin text-5xl">{padWithZeros(++index)}</p>
+                <p class="font-roboto text-2xl">{pos.title}</p>
+                <p class="font-roboto font-thin text-5xl">{padWithZeros(++index)}</p>
               </Block>
               <div class="p-8 basis-2/3">
-                <p class="font-mono mb-4">{pos.description}</p>
+                <p class="mb-4">{pos.description}</p>
                 {pos.link && (
-                  <a href="/position-details" class="text-orange-600 uppercase font-mono font-bold">
+                  <a href="/position-details" class="text-orange-600 uppercase font-bold">
                     + Tell me more
                   </a>
                 )}

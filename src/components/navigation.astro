@@ -6,7 +6,7 @@ const pathName = new URL(Astro.request.url).pathname;
 const currentPath = pathName.slice(1);
 
 const linkClass =
-  'font-mono [&.active]:text-orange-500 [&.active]:drop-shadow-[0_0_0.25em_rgba(255,92,0,1)] hover:text-orange-500 hover:drop-shadow-[0_0_0.25em_rgba(255,92,0,1)]';
+  '[&.active]:text-orange-500 [&.active]:drop-shadow-[0_0_0.25em_rgba(255,92,0,1)] hover:text-orange-500 hover:drop-shadow-[0_0_0.25em_rgba(255,92,0,1)]';
 ---
 
 <nav>

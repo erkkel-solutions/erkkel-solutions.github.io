@@ -5,8 +5,7 @@ export default {
   content: ['./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}'],
   theme: {
     fontFamily: {
-      mono: ['"Space Mono"', '"JetBrains Mono Variable"', ...defaultTheme.fontFamily.mono],
-      display: ['"JetBrains Mono Variable"', ...defaultTheme.fontFamily.mono],
+      sans: ['"Space Mono"', 'monospace', ...defaultTheme.fontFamily.mono],
     },
     extend: {
       colors: {
@@ -43,6 +42,12 @@ export default {
         // tertiary: '',
         // error: '',
         // outline: '#2b2b2b',
+      },
+      screens: {
+        xl: '1440px',
+      },
+      fontFamily: {
+        roboto: ['"Roboto Mono"', 'monospace', ...defaultTheme.fontFamily.sans],
       },
     },
     backgroundImage: {
