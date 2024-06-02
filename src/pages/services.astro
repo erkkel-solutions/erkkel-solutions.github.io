@@ -42,7 +42,7 @@ const services: Service[] = [
     <Block class="basis-1/3 border-t-0" showTopLeft={false} showTopRight={false}>
       <div class="flex flex-row h-full">
         <Block class="basis-2/3 border-t-0 border-l-0 border-r-0 p-10 pr-24 content-center" showTopLeft={false} showBottomLeft={false}>
-          <h1 class="font-roboto font-thin text-5xl mb-8">We specialize in <p class="text-orange-500">Bridging the Tech Canyon</p></h1>
+          <h1 class="font-roboto font-thin text-5xl mb-8">We specialize in <p class="text-orange-600">Bridging the Tech Canyon</p></h1>
           <p class="font-roboto font-light text-2xl">offering a range of innovative solutions tailored to meet your digital needs.</p>
         </Block>
         <Block
@@ -89,6 +89,8 @@ const services: Service[] = [
 </Layout>
 
 <script>
+  import { deleteSnake } from '../utils/snake';
+
   document.addEventListener('DOMContentLoaded', () => {
     const buttons = document.querySelectorAll('.toggle-button');
 
@@ -99,6 +101,7 @@ const services: Service[] = [
 
         const indicator = button.querySelector('.indicator');
         if (indicator) {
+          deleteSnake();
           indicator.innerHTML = content?.classList.contains('hidden') ? '+ More' : '- Less';
         }
       });

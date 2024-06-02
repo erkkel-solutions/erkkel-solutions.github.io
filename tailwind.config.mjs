@@ -49,6 +49,15 @@ export default {
       fontFamily: {
         roboto: ['"Roboto Mono"', 'monospace', ...defaultTheme.fontFamily.sans],
       },
+      keyframes: {
+        slideIn: {
+          '0%': { opacity: 0, transform: 'translateX(100%)' },
+          '100%': { opacity: 1, transform: 'translateX(0)' },
+        },
+      },
+      animation: {
+        slideIn: 'slideIn .25s ease-in-out forwards var(--delay, 0)',
+      },
     },
     backgroundImage: {
       mountain: "url('/images/mountain.png')",
