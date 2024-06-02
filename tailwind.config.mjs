@@ -5,8 +5,7 @@ export default {
   content: ['./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}'],
   theme: {
     fontFamily: {
-      mono: ['"Space Mono"', '"JetBrains Mono Variable"', ...defaultTheme.fontFamily.mono],
-      display: ['"JetBrains Mono Variable"', ...defaultTheme.fontFamily.mono],
+      sans: ['"Space Mono"', 'monospace', ...defaultTheme.fontFamily.mono],
     },
     extend: {
       colors: {
@@ -44,6 +43,26 @@ export default {
         // error: '',
         // outline: '#2b2b2b',
       },
+      screens: {
+        xl: '1440px',
+      },
+      fontFamily: {
+        roboto: ['"Roboto Mono"', 'monospace', ...defaultTheme.fontFamily.sans],
+      },
+      keyframes: {
+        slideIn: {
+          '0%': { opacity: 0, transform: 'translateX(100%)' },
+          '100%': { opacity: 1, transform: 'translateX(0)' },
+        },
+      },
+      animation: {
+        slideIn: 'slideIn .25s ease-in-out forwards var(--delay, 0)',
+      },
+    },
+    backgroundImage: {
+      mountain: "url('/images/mountain.png')",
+      aboutUs1: "url('/images/about-us-1.png')",
+      aboutUs2: "url('/images/about-us-2.png')",
     },
   },
   plugins: [],

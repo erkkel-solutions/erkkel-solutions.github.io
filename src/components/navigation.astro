@@ -6,21 +6,19 @@ const pathName = new URL(Astro.request.url).pathname;
 const currentPath = pathName.slice(1);
 
 const linkClass =
-  'font-mono [&.active]:text-orange-500 [&.active]:drop-shadow-[0_0_0.25em_rgba(255,92,0,1)] hover:text-orange-500 hover:drop-shadow-[0_0_0.25em_rgba(255,92,0,1)]';
+  '[&.active]:text-orange-600 [&.active]:drop-shadow-[0_0_0.25em_rgba(255,92,0,1)] hover:text-orange-600 hover:drop-shadow-[0_0_0.25em_rgba(255,92,0,1)]';
 ---
 
 <nav>
-  <div class="mx-auto">
-    <div class="flex">
-      <Block class="flex px-24 py-8 items-center justify-center">
-        <Logo />
-      </Block>
-      <Block class="flex flex-auto items-center justify-evenly border-l-0" showTopLeft={false} showBottomLeft={false}>
-        <a href="/about-us" class={`${currentPath === 'about-us' ? 'active' : ''} ${linkClass}`}>About us</a>
-        <a href="/services" class={`${currentPath === 'services' ? 'active' : ''} ${linkClass}`}>Services</a>
-        <a href="/open-positions" class={`${currentPath === 'open-positions' ? 'active' : ''} ${linkClass}`}>Open positions</a>
-        <a href="/contact" class={`${currentPath === 'contact' ? 'active' : ''} ${linkClass}`}>Contact</a>
-      </Block>
-    </div>
+  <div class="flex">
+    <Block class="flex px-24 py-8 items-center justify-center">
+      <Logo />
+    </Block>
+    <Block class="flex flex-auto items-center justify-evenly border-l-0" showTopLeft={false} showBottomLeft={false}>
+      <a href="/about-us" class={`${currentPath === 'about-us' ? 'active' : ''} ${linkClass}`}>About us</a>
+      <a href="/services" class={`${currentPath === 'services' ? 'active' : ''} ${linkClass}`}>Services</a>
+      <a href="/open-positions" class={`${currentPath === 'open-positions' ? 'active' : ''} ${linkClass}`}>Open positions</a>
+      <a href="/contact" class={`${currentPath === 'contact' ? 'active' : ''} ${linkClass}`}>Contact</a>
+    </Block>
   </div>
 </nav>
